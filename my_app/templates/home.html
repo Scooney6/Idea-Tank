@@ -6,11 +6,13 @@
 </head>
 <body>
   <h1>Idea Tank</h1>
-  <form action="/home.html" method="post">
+  <form action="{{url_for('home')}}" method="POST">
     <input type="text" id="player_name" placeholder="Username"><br>
     <input type="text" id="session_code" placeholder="Session ID"><br>
-    <button type="button">Join</button><br>
-    <button type="button">Create</button><br>
+    <button type="submit" name="Join" value="Join">Join</button><br>
+  </form>
+  <form action="{{url_for('home')}}" method="POST">
+    <button type="submit" name="Create" value="Create">Create</button><br>
   </form>
 </body>
 </html>

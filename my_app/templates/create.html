@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Idea Tank</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+</head>
+<body>
+  <h1>Create Session</h1>
+  <form action="/create.html" method="post">
+    <input type="text" id="topic" placeholder="Brainstorming Topic"><br>
+    <select id="time_limit">
+      <option value="30 Seconds">30 Seconds</option>
+      <option value="1 Minute">1 Minute</option>
+      <option value="2 Minutes">2 Minutes</option>
+      <option value="5 Minutes">5 Minutes</option>
+    </select>
+    <button type="button">Create</button><br>
+  </form>
+</body>
+</html>
