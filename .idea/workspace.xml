@@ -5,19 +5,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Basic Flask setup for hello world.">
-      <change afterPath="$PROJECT_DIR$/my_app/static/styles/main.css" afterDir="false" />
+    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Cleanup and stylesheet setup">
+      <change afterPath="$PROJECT_DIR$/my_app/session.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/static/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/static/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,7 +35,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Flask Python VENV" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../basecamp" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -78,6 +84,14 @@
       <option name="presentableId" value="Default" />
       <updated>1607662088170</updated>
     </task>
+    <task id="LOCAL-00001" summary="Cleanup and stylesheet setup">
+      <created>1607910740056</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607910740056</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,35 +148,43 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Cleanup and stylesheet setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup and stylesheet setup" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1607899848010">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1607899848010" />
-    <state x="420" y="95" key="FileChooserDialogImpl" timestamp="1607663339664">
+    <state x="420" y="95" key="FileChooserDialogImpl" timestamp="1607997852328">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607663339664" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1607910658527">
+    <state x="420" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607997852328" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1608005920569">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607910658527" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1607910658527">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608005920569" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1608005920569">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607910658527" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1607910658527">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608005920569" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1608005920569">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607910658527" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1607910658527">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608005920569" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1608005920569">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607910658527" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608005920569" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1607663383147">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607663383147" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1607910747615">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1607910747615" />
     <state x="458" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607664291239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
