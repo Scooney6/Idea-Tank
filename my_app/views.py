@@ -1,6 +1,6 @@
 from my_app import app
 from flask import render_template, request, redirect
-import requests
+from my_app import game_session
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -24,4 +24,5 @@ def home():
 
 @app.route("/create", methods=["POST", "GET"])
 def create():
+    s1 = game_session.GameSession(12, "Big booty bitches")
     return render_template("create.html")

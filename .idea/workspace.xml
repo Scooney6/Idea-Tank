@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand />
-    <select />
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Sessions" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="home page setup">
-      <change afterPath="$PROJECT_DIR$/my_app/templates/create.html" afterDir="false" />
+    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="add basic create session page">
+      <change afterPath="$PROJECT_DIR$/my_app/game_session.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/session.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +44,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1lUqbSEjK724eokuk0a6GIehXtU" />
@@ -73,6 +98,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
+        <item itemvalue="Python.run" />
+        <item itemvalue="Python.run" />
       </list>
     </recent_temporary>
   </component>
@@ -99,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608006097164</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add basic create session page">
+      <created>1608074752986</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608074752986</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,7 +172,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="Sessions" />
                       </list>
                     </value>
                   </entry>
@@ -159,7 +193,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cleanup and stylesheet setup" />
     <MESSAGE value="home page setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="home page setup" />
+    <MESSAGE value="add basic create session page" />
+    <option name="LAST_COMMIT_MESSAGE" value="add basic create session page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1607899848010">
@@ -170,30 +205,30 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="420" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607997852328" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1608074497332">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1608106612223">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608074497332" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1608074497332">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608106612222" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1608106612222">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608074497332" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1608074497332">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608106612222" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1608106612221">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608074497332" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1608074497332">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608106612221" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1608106612222">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608074497332" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608106612222" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1607663383147">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607663383147" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1608006103089">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1608074757618">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1608006103089" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1608074757618" />
     <state x="458" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607664291239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
