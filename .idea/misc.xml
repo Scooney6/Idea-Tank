@@ -3,7 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="Python" url="file://$PROJECT_DIR$/config.py" />
     <file type="Python" url="file://$PROJECT_DIR$/my_app/__init__.py" />
-    <file type="Python" url="file://$PROJECT_DIR$/my_app/views.py" />
+    <file type="Python" url="file://$PROJECT_DIR$/my_app/application.py" />
     <file type="Python" url="file://$PROJECT_DIR$/run.py" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="false" project-jdk-name="Python 3.8 (Flask Python VENV)" project-jdk-type="Python SDK">

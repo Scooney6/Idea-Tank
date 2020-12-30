@@ -6,15 +6,17 @@
 </head>
 <body>
   <h1>Create Session</h1>
-  <form action="/create.html" method="post">
-    <input type="text" id="topic" placeholder="Brainstorming Topic"><br>
-    <select id="time_limit">
+  <!-- TODO: replace with wtforms -->
+  <form action="{{url_for('create')}}" method="POST">
+    <input type="text" name="topic" id="topic" placeholder="Brainstorming Topic"><br>
+    <select name="time_limit" id="time_limit">
       <option value="30 Seconds">30 Seconds</option>
       <option value="1 Minute">1 Minute</option>
       <option value="2 Minutes">2 Minutes</option>
       <option value="5 Minutes">5 Minutes</option>
-    </select>
-    <button type="button">Create</button><br>
+    </select><br>
+    <input type="text" name="username" id="username" placeholder="Your Username">
+    <button type="submit">Create</button><br>
   </form>
 </body>
 </html>

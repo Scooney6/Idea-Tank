@@ -6,13 +6,37 @@
 </head>
 <body>
   <h1>Idea Tank</h1>
+  <!-- Join Form -->
   <form action="{{url_for('home')}}" method="POST">
-    <input type="text" id="player_name" placeholder="Username"><br>
-    <input type="text" id="session_code" placeholder="Session ID"><br>
-    <button type="submit" name="Join" value="Join">Join</button><br>
+    <!-- Username Field -->
+    <div>
+      {{ form.username(placeholder='Username') }}
+      <ul>
+        {% for error in form.username.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- Join Code Field -->
+    <div>
+      {{ form.join_code(placeholder='Session Code') }}
+      <ul>
+        {% for error in form.join_code.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- Join Button Field -->
+    <div>
+      {{ form.join_button }}
+    </div>
   </form>
+  <!-- Separate form for the create button -->
   <form action="{{url_for('home')}}" method="POST">
-    <button type="submit" name="Create" value="Create">Create</button><br>
+    <input type="submit" name="Create" value="Create">
   </form>
+  <!-- Socketio script -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
 </body>
 </html>
