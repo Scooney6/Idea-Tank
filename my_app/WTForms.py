@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField
+from wtforms import StringField, IntegerField, SubmitField, SelectField
 from wtforms.validators import InputRequired, Length
 
 
@@ -15,3 +15,11 @@ class HomeJoinForm(FlaskForm):
     def validate_join_code(form, field):
         # TODO: implement join_code validation for length and available codes
         pass
+
+
+# makes the create session form
+class CreateForm(FlaskForm):
+    topic = StringField('topic_label', validators=[InputRequired(message="Brainstorming Topic Required")])
+    time_limit = SelectField('Time Limit', choices=[('30s', '30 Seconds'), ('1m', '1 Minute'), ('2m', '2 Minutes'),
+                                                    ('5m', '5 Minutes')])
+    create_button = SubmitField('Create')

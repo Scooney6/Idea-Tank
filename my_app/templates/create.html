@@ -6,17 +6,23 @@
 </head>
 <body>
   <h1>Create Session</h1>
-  <!-- TODO: replace with wtforms -->
+  <!-- Create form -->
   <form action="{{url_for('create')}}" method="POST">
-    <input type="text" name="topic" id="topic" placeholder="Brainstorming Topic"><br>
-    <select name="time_limit" id="time_limit">
-      <option value="30 Seconds">30 Seconds</option>
-      <option value="1 Minute">1 Minute</option>
-      <option value="2 Minutes">2 Minutes</option>
-      <option value="5 Minutes">5 Minutes</option>
-    </select><br>
-    <input type="text" name="username" id="username" placeholder="Your Username">
-    <button type="submit">Create</button><br>
+    <!-- Topic field -->
+    <div>
+      {{ form.topic(placeholder='Brainstorming Topic') }}
+    </div>
+    <!-- Time limit select field -->
+    <div>
+      {{ form.time_limit() }}
+    </div>
+    <!-- Create submit button -->
+    <div>
+      {{ form.create_button }}
+    </div>
   </form>
+  <!-- Socketio script -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
 </body>
 </html>

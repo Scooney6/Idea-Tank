@@ -38,15 +38,22 @@ def home():
 
 @app.route("/create", methods=["POST", "GET"])
 def create():
-    if request.method == "POST":
+    # instantiate create form
+    create_form = CreateForm()
+
+    # if the create form is submitted and valid
+    if create_form.validate_on_submit():
         # TODO: create random room code then add code, topic, and limit to list then send client to that room
         return render_template("lobby.html")
-    return render_template("create.html")
+
+    # otherwise render the template with instantiated form
+    return render_template("create.html", form=create_form)
 
 
 @app.route("/lobby", methods=["POST", "GET"])
 def lobby():
     return render_template("lobby.html")
+
 
 # when the server receives data from a client send method
 @socketio.on('message')
