@@ -11,18 +11,25 @@
     <!-- Topic field -->
     <div>
       {{ form.topic(placeholder='Brainstorming Topic') }}
+      <ul>
+        {% for error in form.topic.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
     </div>
     <!-- Time limit select field -->
     <div>
       {{ form.time_limit() }}
+      <ul>
+        {% for error in form.time_limit.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
     </div>
     <!-- Create submit button -->
     <div>
       {{ form.create_button }}
     </div>
   </form>
-  <!-- Socketio script -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-  <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
 </body>
 </html>

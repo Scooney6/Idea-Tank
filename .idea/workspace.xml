@@ -26,12 +26,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Project restructure, socketio setup, wtforms setup">
+    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Add wtforms for create page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/WTForms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/WTForms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/templates/lobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/lobby.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +59,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Bruh-Bot" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -157,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608074752986</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add wtforms for create page">
+      <created>1609356323665</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356323665</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,7 +224,8 @@
     <MESSAGE value="Cleanup and stylesheet setup" />
     <MESSAGE value="home page setup" />
     <MESSAGE value="add basic create session page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add basic create session page" />
+    <MESSAGE value="Add wtforms for create page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add wtforms for create page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="59" y="167" key="#Notifications" timestamp="1609303483957">
@@ -233,38 +240,42 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1607899848010" />
-    <state x="420" y="95" key="FileChooserDialogImpl" timestamp="1609215606603">
+    <state x="420" y="95" key="FileChooserDialogImpl" timestamp="1609492809166">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609215606603" />
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1609356142406">
+    <state x="420" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609492809166" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1609736882690">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609356142406" />
-    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1609356142405">
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1609736882690">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609356142405" />
-    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1609356142404">
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1609736882690">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609356142404" />
-    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1609356142405">
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1609736882690">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609356142405" />
-    <state x="41" y="0" key="SettingsEditor" timestamp="1609303185928">
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
+    <state x="41" y="0" key="SettingsEditor" timestamp="1609865782021">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="41" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1609303185928" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1609313987293">
+    <state x="41" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1609865782021" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1609356329131">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1609313987293" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1609356329131" />
     <state x="458" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609314011771">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="458" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1609314011771" />
+    <state x="232" y="0" key="new project wizard" timestamp="1609865837128">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="232" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1609865837128" />
     <state x="179" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1609306514534">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
