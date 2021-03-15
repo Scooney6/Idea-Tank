@@ -24,18 +24,20 @@ def index():
 @app.route("/home", methods=["POST", "GET"])
 def home():
     # instantiate the form
-    home_join_form = HomeJoinForm()
+    home_join_form = HomeJoinForm(request.form)
 
-    # if the join form is submitted and is valid
-    if home_join_form.validate():
-        # TODO: get field data
-        pass
-
-    # if the create form is submitted
-    elif request.form.get("Create"):
-        return redirect("/create")
-
-    # otherwise render home with instantiated form
+    if request.method == "POST":
+        # if the create form is submitted
+        if request.form.get("Create"):
+            return redirect("/create")
+        # if the home form is submitted and is valid
+        elif home_join_form.validate():
+            code = home_join_form.join_code.data
+            return redirect("/lobby", code=code)
+        # otherwise render the home page again with errors if necessary
+        else:
+            return render_template("home.html", form=home_join_form)
+    # otherwise render home with form
     else:
         return render_template("home.html", form=home_join_form)
 
@@ -46,17 +48,12 @@ def create():
     create_form = CreateForm()
 
     # if the create form is submitted and valid
-    if request.method .validate():
-        print("bruh")
-        code = create_code()
-        return redirect("/lobby", code=code)
+    if create_form.validate_on_submit():
+        return redirect("/lobby", code=12)
+    # otherwise render the template with instantiated form and errors if necessary
     else:
-        print("nope")
         return render_template("create.html", form=create_form)
-
         # TODO: create random room code then add code, topic, and limit to list then send client to that room
-    # otherwise render the template with instantiated form
-    return render_template("create.html", form=create_form)
 
 
 @app.route("/lobby", methods=["POST", "GET"])

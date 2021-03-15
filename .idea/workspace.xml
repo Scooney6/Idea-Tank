@@ -27,10 +27,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Add wtforms for create page">
+      <change afterPath="$PROJECT_DIR$/my_app/templates/field-macro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/WTForms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/WTForms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/lobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/lobby.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +47,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -58,12 +65,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -226,59 +236,5 @@
     <MESSAGE value="add basic create session page" />
     <MESSAGE value="Add wtforms for create page" />
     <option name="LAST_COMMIT_MESSAGE" value="Add wtforms for create page" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="59" y="167" key="#Notifications" timestamp="1609303483957">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="59" y="167" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1609303483957" />
-    <state x="152" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609202689330">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="152" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1609202689330" />
-    <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1607899848010">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1607899848010" />
-    <state x="420" y="95" key="FileChooserDialogImpl" timestamp="1609492809166">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="420" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609492809166" />
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1609736882690">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
-    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1609736882690">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
-    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1609736882690">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
-    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1609736882690">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609736882690" />
-    <state x="41" y="0" key="SettingsEditor" timestamp="1609865782021">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="41" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1609865782021" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1609356329131">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1609356329131" />
-    <state x="458" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609314011771">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="458" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1609314011771" />
-    <state x="232" y="0" key="new project wizard" timestamp="1609865837128">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="232" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1609865837128" />
-    <state x="179" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1609306514534">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="179" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1609306514534" />
   </component>
 </project>

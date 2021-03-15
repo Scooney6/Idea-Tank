@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+{% from 'field-macro.html' import displayField %}
 <head>
   <title>Idea Tank</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
@@ -7,29 +8,11 @@
 <body>
   <h1>Idea Tank</h1>
   <!-- Join Form -->
-  <form action="{{url_for('home')}}" method="POST">
-    <!-- Username Field -->
-    <div>
-      {{ form.username(placeholder='Username') }}
-      <ul>
-        {% for error in form.username.errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <!-- Join Code Field -->
-    <div>
-      {{ form.join_code(placeholder='Session Code') }}
-      <ul>
-        {% for error in form.join_code.errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <!-- Join Button Field -->
-    <div>
-      {{ form.join_button }}
-    </div>
+  <form action="{{ url_for('home') }}" method="POST">
+    {{ form.csrf_token }}
+    {{ displayField(form.username, 'Username') }}
+    {{ displayField(form.join_code, 'Join Code') }}
+    {{ displayField(form.join_button) }}
   </form>
   <!-- Separate form for the create button -->
   <form action="{{url_for('home')}}" method="POST">

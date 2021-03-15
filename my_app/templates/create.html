@@ -3,33 +3,16 @@
 <head>
   <title>Idea Tank</title>
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+  {% from 'field-macro.html' import displayField %}
 </head>
 <body>
   <h1>Create Session</h1>
   <!-- Create form -->
   <form action="{{url_for('create')}}" method="POST">
-    <!-- Topic field -->
-    <div>
-      {{ form.topic(placeholder='Brainstorming Topic') }}
-      <ul>
-        {% for error in form.topic.errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <!-- Time limit select field -->
-    <div>
-      {{ form.time_limit() }}
-      <ul>
-        {% for error in form.time_limit.errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <!-- Create submit button -->
-    <div>
-      {{ form.create_button }}
-    </div>
+    {{ form.csrf_token }}
+    {{ displayField(form.topic, 'Brainstorming Topic') }}
+    {{ displayField(form.time_limit) }}
+    {{ displayField(form.create_button) }}
   </form>
 </body>
 </html>

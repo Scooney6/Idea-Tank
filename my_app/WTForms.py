@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, SelectField
+from wtforms import StringField, IntegerField, SubmitField, SelectField, validators
 from wtforms.validators import InputRequired, Length
 
 
@@ -19,7 +19,7 @@ class HomeJoinForm(FlaskForm):
 
 # makes the create session form
 class CreateForm(FlaskForm):
-    topic = StringField('topic_label', validators=[InputRequired(message="Brainstorming Topic Required")])
+    topic = StringField('topic_label', validators=[InputRequired()])
     time_limit = SelectField('Time Limit', choices=[('30s', '30 Seconds'), ('1m', '1 Minute'), ('2m', '2 Minutes'),
                                                     ('5m', '5 Minutes')])
     create_button = SubmitField('Create')
