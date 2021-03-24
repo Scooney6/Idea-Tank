@@ -27,14 +27,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Add wtforms for create page">
-      <change afterPath="$PROJECT_DIR$/my_app/templates/field-macro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Idea Tank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Idea Tank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/WTForms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/WTForms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/application.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/static/scripts/socketio.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/scripts/socketio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/lobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/lobby.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
@@ -47,7 +45,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -65,11 +62,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../basecamp" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -236,5 +231,9 @@
     <MESSAGE value="add basic create session page" />
     <MESSAGE value="Add wtforms for create page" />
     <option name="LAST_COMMIT_MESSAGE" value="Add wtforms for create page" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
