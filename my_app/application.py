@@ -1,9 +1,10 @@
 from random import randint
 
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from flask import Flask
 from flask_socketio import SocketIO, send, join_room, leave_room
 from my_app.WTForms import *
+import sqlite3 as sql
 
 # Flask init
 app = Flask(__name__)
@@ -11,8 +12,6 @@ app.secret_key = 'ilsjgnsjnslkn'
 
 # SocketIO init
 socketio = SocketIO(app)
-
-global code_list
 
 
 # index goes to /home just because
@@ -33,7 +32,8 @@ def home():
         # if the home form is submitted and is valid
         elif home_join_form.validate():
             code = home_join_form.join_code.data
-            return redirect("/lobby", code=code)
+            username = home_join_form.username.data
+            return redirect(url_for("lobby", code=code, username=username))
         # otherwise render the home page again with errors if necessary
         else:
             return render_template("home.html", form=home_join_form)
@@ -49,16 +49,24 @@ def create():
 
     # if the create form is submitted and valid
     if create_form.validate_on_submit():
-        return redirect("/lobby", code=12)
+        code = create_code()
+        username = create_form.username.data
+        with sql.connect("rooms.db") as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
+            cur.execute("SELECT * FROM rooms")
+            print(cur.fetchall())
+        return redirect(url_for("lobby", code=code, username=username))
     # otherwise render the template with instantiated form and errors if necessary
     else:
         return render_template("create.html", form=create_form)
-        # TODO: create random room code then add code, topic, and limit to list then send client to that room
 
 
 @app.route("/lobby", methods=["POST", "GET"])
-def lobby(code):
-    return render_template("lobby.html", code=code)
+def lobby():
+    cd = request.args.get('code')
+    un = request.args.get('username')
+    return render_template("lobby.html", code=cd, username=un)
 
 
 # when the server receives data from a client send method
@@ -87,16 +95,27 @@ def on_leave(data):
 
 def create_code():
     temp = ""
-    for i in range(0, 3):
+    for i in range(0, 4):
         temp += str(randint(0, 9))
 
-    if temp in code_list:
-        create_code()
-
-    code_list.add(temp)
-    return temp
+    with sql.connect("rooms.db") as con:
+        cur = con.cursor()
+        cur.execute("SELECT room FROM rooms WHERE room = (?)", (temp,))
+        temproom = cur.fetchone()
+        if temproom:
+            create_code()
+        else:
+            print(temp)
+            return temp
 
 
 # always true, runs the application on localhost
 if __name__ == '__main__':
     socketio.run(app, debug=True)
+
+
+# Initial database setup
+#   with sql.connect("rooms.db") as con:
+#        cur = con.cursor()
+#        cur.execute("CREATE TABLE rooms (username text, room integer)")
+#        con.commit()
