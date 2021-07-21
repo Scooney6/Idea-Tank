@@ -51,11 +51,6 @@ def create():
     if create_form.validate_on_submit():
         code = create_code()
         username = create_form.username.data
-        with sql.connect("rooms.db") as con:
-            cur = con.cursor()
-            cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
-            cur.execute("SELECT * FROM rooms")
-            print(cur.fetchall())
         return redirect(url_for("lobby", code=code, username=username))
     # otherwise render the template with instantiated form and errors if necessary
     else:
@@ -66,7 +61,14 @@ def create():
 def lobby():
     cd = request.args.get('code')
     un = request.args.get('username')
-    return render_template("lobby.html", code=cd, username=un)
+    # TODO make this not happen on page reload
+    # TODO make it so you can't have duplicate usernames
+    add_room(un, cd)
+    with sql.connect("rooms.db") as con:
+        cur = con.cursor()
+        cur.execute("SELECT username FROM rooms WHERE room = (?)", (cd,))
+        players = cur.fetchall()
+    return render_template("lobby.html", code=cd, players=players)
 
 
 # when the server receives data from a client send method
@@ -108,6 +110,13 @@ def create_code():
             print(temp)
             return temp
 
+
+def add_room(username, code):
+    with sql.connect("rooms.db") as con:
+        cur = con.cursor()
+        cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
+        cur.execute("SELECT * FROM rooms")
+        print(cur.fetchall())
 
 # always true, runs the application on localhost
 if __name__ == '__main__':
