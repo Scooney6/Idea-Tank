@@ -10,13 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
        socket.emit('join');
     });
 
-    // Event bucket for when the client has created a room
-    socket.on('Create', function() {
-        socket.emit()
-    })
-    // TODO: add event bucket for player joins
-    // socket.on('player-join', )
-})
 
 // JOIN MAPPING
 // If code exists, send room to client, client sends room back to server where the client joins the room. server sends back topic, time limit, and players (use kwargs)

@@ -26,15 +26,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Add wtforms for create page">
-      <change beforePath="$PROJECT_DIR$/.idea/Idea Tank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Idea Tank.iml" afterDir="false" />
+    <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Add SQLITE functionality for creating/joining">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/WTForms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/WTForms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/static/scripts/socketio.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/scripts/socketio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/lobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/lobby.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,10 +58,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../basecamp" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -80,7 +77,7 @@
       <recent name="C:\Users\coone\OneDrive\Documents\GitHub\Idea-Tank\my_app\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.application (1)">
+  <component name="RunManager" selected="Python.application">
     <configuration name="application (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Idea Tank" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,10 +108,10 @@
       </envs>
       <option name="SDK_HOME" value="C:\Users\coone\OneDrive\Documents\Flask Python VENV\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\coone\OneDrive\Documents\GitHub\Idea-Tank\my_app\application.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_app/application.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -168,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609356323665</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add SQLITE functionality for creating/joining">
+      <created>1616553912754</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616553912754</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -230,7 +234,30 @@
     <MESSAGE value="home page setup" />
     <MESSAGE value="add basic create session page" />
     <MESSAGE value="Add wtforms for create page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add wtforms for create page" />
+    <MESSAGE value="Add SQLITE functionality for creating/joining" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SQLITE functionality for creating/joining" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="121" y="0" key="#Project_Structure" timestamp="1622608314486">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1622608314486" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1622608908292">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1622608908292" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1622608908292">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1622608908292" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1622608908291">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1622608908291" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1622608908292">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1622608908292" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
