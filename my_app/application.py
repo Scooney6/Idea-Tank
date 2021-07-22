@@ -61,11 +61,12 @@ def create():
 def lobby():
     cd = request.args.get('code')
     un = request.args.get('username')
-    # TODO make this not happen on page reload
-    # TODO make it so you can't have duplicate usernames
-    add_room(un, cd)
     with sql.connect("rooms.db") as con:
         cur = con.cursor()
+        cur.execute("SELECT username FROM rooms WHERE username = (?)", (un,))
+        obj = cur.fetchone()
+        if not obj:
+            add_room(un, cd)
         cur.execute("SELECT username FROM rooms WHERE room = (?)", (cd,))
         players = cur.fetchall()
     return render_template("lobby.html", code=cd, players=players)
@@ -117,6 +118,7 @@ def add_room(username, code):
         cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
         cur.execute("SELECT * FROM rooms")
         print(cur.fetchall())
+
 
 # always true, runs the application on localhost
 if __name__ == '__main__':
