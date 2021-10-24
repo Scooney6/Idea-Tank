@@ -1,9 +1,8 @@
 from random import randint
 
-from flask import render_template, request, redirect, url_for
-from flask import Flask
-from flask_socketio import SocketIO, send, join_room, leave_room
-from my_app.WTForms import *
+from flask import Flask, render_template, request, redirect, url_for
+from flask_socketio import SocketIO, send, join_room, leave_room, emit
+from WTForms import *
 import sqlite3 as sql
 
 # Flask init
@@ -33,6 +32,9 @@ def home():
         elif home_join_form.validate():
             code = home_join_form.join_code.data
             username = home_join_form.username.data
+            with sql.connect("rooms.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
             return redirect(url_for("lobby", code=code, username=username))
         # otherwise render the home page again with errors if necessary
         else:
@@ -54,8 +56,6 @@ def create():
         with sql.connect("rooms.db") as con:
             cur = con.cursor()
             cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
-            cur.execute("SELECT * FROM rooms")
-            print(cur.fetchall())
         return redirect(url_for("lobby", code=code, username=username))
     # otherwise render the template with instantiated form and errors if necessary
     else:
@@ -65,16 +65,7 @@ def create():
 @app.route("/lobby", methods=["POST", "GET"])
 def lobby():
     cd = request.args.get('code')
-    un = request.args.get('username')
-    return render_template("lobby.html", code=cd, username=un)
-
-
-# when the server receives data from a client send method
-@socketio.on('message')
-def message(data):
-    print(data)
-    # sends data to all clients in the message event
-    send(data)
+    return render_template("lobby.html", code=cd)
 
 
 @socketio.on('join')
@@ -82,7 +73,14 @@ def on_join(data):
     username = data['username']
     room = data['room']
     join_room(room)
-    send(username + ' has entered the room.', room=room)
+    with sql.connect("rooms.db") as con:
+        cur = con.cursor()
+        cur.execute("SELECT username FROM rooms WHERE room = (?)", (room,))
+        users = cur.fetchall()
+    # Sends to everyone in the room of the sender but not the sender
+    emit('newjoin', username, room=room, include_self=False)
+    # Sends to only the client sender
+    emit('curusers', users, room=request.sid)
 
 
 @socketio.on('leave')
@@ -105,7 +103,6 @@ def create_code():
         if temproom:
             create_code()
         else:
-            print(temp)
             return temp
 
 

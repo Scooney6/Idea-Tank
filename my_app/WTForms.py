@@ -23,7 +23,7 @@ class HomeJoinForm(FlaskForm):
             cur.execute("SELECT room FROM rooms WHERE room = (?)", (code,))
             roomobj = cur.fetchone()
             if not roomobj:
-                raise ValidationError("Incorrect room ID")
+                raise ValidationError("Invalid room ID")
 
 
 # makes the create session form
