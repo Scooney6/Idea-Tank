@@ -29,6 +29,8 @@
     <list default="true" id="6513401b-a418-4cd3-94e6-e38db1abe586" name="Default Changelist" comment="Add SQLITE functionality for creating/joining">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/WTForms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/WTForms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/static/scripts/socketio.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/static/scripts/socketio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/templates/lobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/templates/lobby.html" afterDir="false" />
     </list>
@@ -236,28 +238,6 @@
     <MESSAGE value="Add wtforms for create page" />
     <MESSAGE value="Add SQLITE functionality for creating/joining" />
     <option name="LAST_COMMIT_MESSAGE" value="Add SQLITE functionality for creating/joining" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="121" y="0" key="#Project_Structure" timestamp="1622608314486">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1622608314486" />
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1622608908292">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1622608908292" />
-    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1622608908292">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1622608908292" />
-    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1622608908291">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1622608908291" />
-    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1622608908292">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1622608908292" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
