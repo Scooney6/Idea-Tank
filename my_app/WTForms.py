@@ -17,19 +17,13 @@ class HomeJoinForm(FlaskForm):
     def validate_join_code(self, join_code):
         with sql.connect("rooms.db") as con:
             cur = con.cursor()
-            cur.execute("SELECT room FROM rooms WHERE room = (?)", (join_code.data,))
+
+            code = str(join_code)
+            code = code[67:71]
+            cur.execute("SELECT room FROM rooms WHERE room = (?)", (code,))
             roomobj = cur.fetchone()
             if not roomobj:
                 raise ValidationError("Incorrect room ID")
-
-    # custom validator to prevent duplicate usernames
-    def validate_username(self, field):
-        with sql.connect("rooms.db") as con:
-            cur = con.cursor()
-            cur.execute("SELECT username FROM rooms WHERE username = (?)", (field.data,))
-            roomobj = cur.fetchone()
-            if roomobj:
-                raise ValidationError("Name already exists!")
 
 
 # makes the create session form
