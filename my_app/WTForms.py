@@ -20,7 +20,7 @@ class HomeJoinForm(FlaskForm):
             cur.execute("SELECT room FROM rooms WHERE room = (?)", (join_code.data,))
             roomobj = cur.fetchone()
             if not roomobj:
-                raise ValidationError("Invalid room ID")
+                raise ValidationError("Incorrect room ID")
 
     # custom validator to prevent duplicate usernames
     def validate_username(self, field):
