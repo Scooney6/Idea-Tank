@@ -26,7 +26,7 @@ class HomeJoinForm(FlaskForm):
     def validate_username(self, field):
         with sql.connect("rooms.db") as con:
             cur = con.cursor()
-            cur.execute("SELECT username FROM rooms WHERE username = (?)", (field.data,))
+            cur.execute("SELECT username FROM rooms WHERE username = (?) AND room = (?)", (field.data, self.join_code.data))
             roomobj = cur.fetchone()
             if roomobj:
                 raise ValidationError("Name already exists!")

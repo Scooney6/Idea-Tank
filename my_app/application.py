@@ -56,8 +56,6 @@ def create():
         with sql.connect("rooms.db") as con:
             cur = con.cursor()
             cur.execute("INSERT INTO rooms (username, room) VALUES (?, ?)", (username, code))
-            cur.execute("SELECT * FROM rooms")
-            print(cur.fetchall())
         return redirect(url_for("lobby", code=code, username=username))
     # otherwise render the template with instantiated form and errors if necessary
     else:
@@ -89,8 +87,12 @@ def on_join(data):
 def on_leave(data):
     username = data['username']
     room = data['room']
+    print("Player : " + username + " Left")
     leave_room(room)
-    send(username + ' has left the room.', room=room)
+    with sql.connect("rooms.db") as con:
+        cur = con.cursor()
+        cur.execute("DELETE FROM rooms WHERE username = (?) and room = (?)", (username, room))
+    emit('newleave', username, room=room, include_self=False)
 
 
 def create_code():
@@ -105,7 +107,6 @@ def create_code():
         if temproom:
             create_code()
         else:
-            print(temp)
             return temp
 
 
