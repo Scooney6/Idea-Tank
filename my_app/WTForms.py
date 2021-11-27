@@ -35,10 +35,10 @@ class HomeJoinForm(FlaskForm):
 # makes the create session form
 class CreateForm(FlaskForm):
     topic = StringField('topic_label', validators=[InputRequired()])
-    time_limit = SelectField('Time Limit', choices=[('30s', '30 Seconds'),
-                                                    ('1m', '1 Minute'),
-                                                    ('2m', '2 Minutes'),
-                                                    ('5m', '5 Minutes')])
+    time_limit = SelectField('Time Limit', choices=[('30', '30 Seconds'),
+                                                    ('60', '1 Minute'),
+                                                    ('120', '2 Minutes'),
+                                                    ('600', '5 Minutes')])
     create_button = SubmitField('Create')
     username = StringField('username_label', validators=[InputRequired(message="Username Required"),
                                                          Length(min=4,

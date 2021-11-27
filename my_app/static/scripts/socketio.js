@@ -1,20 +1,17 @@
 // I am not familiar with js so uh...
-
-// I believe that when the webpage is loaded by a client this starts socketio
+var socket = io();
+var queryString = window.location.href;
+var url = new URL(queryString);
+var room = url.searchParams.get("code");
+var username = url.searchParams.get("username");
+var usernames = [];
+var Leader = ""
+// Triggers when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    var socket = io();
-
-    var usernames = [];
-    var queryString = window.location.href;
-    var url = new URL(queryString);
-    var room = url.searchParams.get("code");
-    var username = url.searchParams.get("username");
-    var Leader = "Loading..."
-
     // Event bucket for when the client connects to the server
-    socket.on('connect', function() {
-       // Sends a request for a room
-       socket.emit('join', {'room': room, 'username': username});
+    socket.on('connect', function () {
+        // Sends a request for a room
+        socket.emit('join', {'room': room, 'username': username});
     });
     // Just before the page gets closed, notify server we left.
     window.onbeforeunload = function () {
@@ -23,17 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             socket.emit('leave', {'room': room, 'username': username, 'isleader': 0});
         }
-    }
+    };
     // Event bucket for when someone else joins the room.
     socket.on('newjoin', data => {
-        console.log("New player: " + data);
-        usernames.push(data);
-        document.getElementById("users").innerHTML = usernames;
+        let index = usernames.indexOf(data);
+        if (index === -1) {
+            console.log("New player: " + data);
+            usernames.push(data);
+            document.getElementById("users").innerHTML = usernames;
+        } else {
+            console.log("Player: " + data + " reconnected.");
+        }
     });
     // Event bucket for when someone else leaves the room.
     socket.on('newleave', data => {
         console.log("Player Left: " + data);
-        var index = usernames.indexOf(data);
+        let index = usernames.indexOf(data);
         if (index > -1) {
             usernames.splice(index, 1);
             console.log("Removed player from list")
@@ -46,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             usernames.push(users[i]);
         }
         Leader = leader;
+        if (username == Leader) {
+            document.getElementById("start").style.visibility = "visible";
+        }
         console.log(users);
         console.log(leader);
         document.getElementById("users").innerHTML = usernames;
@@ -53,7 +58,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Event bucket for when a new leader is selected
     socket.on('newleader', newleader => {
+        Leader = newleader;
         console.log("New leader: " + newleader);
-        document.getElementById("leader").innerHTML = newleader;
+        if (username == Leader) {
+            document.getElementById("start").style.visibility = "visible";
+        }
+        document.getElementById("leader").innerHTML = Leader;
+    });
+    // Event bucket for recieving the start game info
+    socket.on('startinfo', (topic, time) => {
+        document.getElementById("topic").innerHTML = topic;
+        document.getElementById("idea_submition").style.visibility = "visible";
+        startTimer(time);
+
     });
 });
+// Event handler for start button press
+document.getElementById("start").onclick = function () {
+    document.getElementById("start").style.visibility = "hidden";
+    socket.emit('start', {'room': room});
+};
+function getIdea() {
+    let idea = document.getElementById("ideabox").value;
+    document.getElementById("ideabox").value = "";
+    socket.emit('newidea', {'user': username, 'room': room, 'idea': idea});
+}
+function startTimer(duration) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        document.getElementById("timer").textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            document.getElementById("idea_submition").style.visibility = "hidden";
+        }
+    }, 1000);
+}
+
+/*
+Leader presses go
+everyone gets the prompt displayed and a text box for idea submissions
+The timer gets displayed and counts down
+timer reaches zero, text box disappears.
+Ideas get split into pairs, and then pair by pair displayed on the page.
+Each has a button (left and right) and a timer counts down to show voting time
+*/
