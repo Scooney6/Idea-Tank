@@ -1,16 +1,20 @@
 from random import randint
-
+import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from my_app.WTForms import *
-import sqlite3 as sql
 
-# Flask init
-app = Flask(__name__)
-app.secret_key = 'ilsjgnsjnslkn'
 
-# SocketIO init
-socketio = SocketIO(app)
+app = Flask(__name__)  # Flask init
+app.secret_key = config.secret_key
+socketio = SocketIO(app)  # SocketIO init
+
+
+# MySQL Connection helper function
+def connect():
+    return mysql.connector.connect(user=config.user, password=config.password,
+                                   host=config.host,
+                                   database=config.database)
 
 
 # index goes to /home just because
@@ -33,10 +37,12 @@ def home():
             code = home_join_form.join_code.data
             username = home_join_form.username.data
             # enter the user to the db as not a leader
-            with sql.connect("rooms.db") as con:
+            with connect() as con:
                 print("Inserting " + username + " in room " + str(code) + " and is not the leader")
                 cur = con.cursor()
-                cur.execute("INSERT INTO rooms (username, room, isleader) VALUES (?, ?, ?)", (username, code, 0))
+                cur.execute("INSERT INTO Users (RoomID, Username, IsLeader) VALUES (%s, %s, %s)",
+                            (code, username, False))
+                con.commit()
             return redirect(url_for("lobby", code=code, username=username))
         # otherwise render the home page again with errors if necessary
         else:
@@ -58,11 +64,13 @@ def create():
         time = create_form.time_limit.data
         topic = create_form.topic.data
         # add the user to the db as the leader of this room
-        with sql.connect("rooms.db") as con:
+        with connect() as con:
             cur = con.cursor()
             print("Inserting " + username + " in room " + str(code) + " and is the leader")
-            cur.execute("INSERT INTO rooms (username, room, isleader) VALUES (?, ?, ?)", (username, code, 1))
-            cur.execute("INSERT INTO topics (topic, room, time) VALUES (?, ?, ?)", (topic, code, time))
+            cur.execute("INSERT INTO Rooms (RoomID, Topic, TimeLimit) VALUES (%s, %s, %s)", (code, topic, time))
+            con.commit()
+            cur.execute("INSERT INTO Users (RoomID, Username, IsLeader) VALUES (%s, %s, %s)", (code, username, True))
+            con.commit()
         return redirect(url_for("lobby", code=code, username=username))
     # otherwise render the template with instantiated form and errors if necessary
     else:
@@ -84,15 +92,16 @@ def on_join(data):
     # put the user in their socketio room
     join_room(room)
     # get the current users and leader from the db
-    with sql.connect("rooms.db") as con:
+    with connect() as con:
         cur = con.cursor()
         # Retrieves list of tuples of usernames in room
-        cur.execute("SELECT username FROM rooms WHERE room = (?)", (room,))
+        cur.execute("SELECT Username FROM Users WHERE RoomID = %s", (room,))
         users = cur.fetchall()
         # Makes users just a list of strings
         for i in range(0, len(users)):
             users[i] = users[i][0]
-        cur.execute("SELECT username FROM rooms WHERE room = (?) AND isleader = (?)", (room, 1))  # Retrieves a tuple of the leader's username
+        cur.execute("SELECT Username FROM Users WHERE RoomID = %s AND IsLeader = %s",
+                    (room, True))  # Retrieves a tuple of the leader's username
         leader = cur.fetchone()[0]  # [0] Converts tuple to string
         print("Retreived " + str(users) + " and the leader " + leader + " for the user " + username)
     # Send the username of the player that just connected to everyone in the room except the new player
@@ -110,24 +119,27 @@ def on_leave(data):
     # Make the user leave their socketio room
     leave_room(room)
     # Remove them from the db
-    with sql.connect("rooms.db") as con:
+    with connect() as con:
         cur = con.cursor()
-        cur.execute("DELETE FROM rooms WHERE username = (?) and room = (?)", (username, room))
+        cur.execute("DELETE FROM Users WHERE Username = %s and RoomID = %s", (username, room))
+        con.commit()
         print("Removed " + username + " from room " + str(room))
         # If they were the leader, and if there is someone else in the room, select a new one
         if isleader == 1:
-            cur.execute("SELECT username FROM rooms WHERE room = (?)", (room,))  # Retreives tuple of string username
+            cur.execute("SELECT Username FROM Users WHERE RoomID = %s ORDER BY rand() LIMIT 1",
+                        (room,))  # Retreives tuple of string username
             newlead = cur.fetchone()
             if newlead is not None:
                 newlead = newlead[0]  # Converts tuple to string
                 print("Making " + newlead + " the new leader for room " + str(room))
-                cur.execute("UPDATE rooms SET isleader = 1 WHERE username = (?) and room = (?)", (newlead, room))
+                cur.execute("UPDATE Users SET IsLeader = 1 WHERE Username = %s and RoomID = %s", (newlead, room))
                 # Notify everyone else in the room of the new leader
                 emit('newleader', newlead, room=room, include_self=False)
             else:
                 # If the room is now empty, remove it
                 print("Room " + str(room) + " is now empty, deleting it")
-                cur.execute("DELETE FROM topics WHERE room = (?)", (room,))
+                cur.execute("DELETE FROM Rooms WHERE RoomID = %s", (room,))
+                con.commit()
     # Notify everyone else in the room that user has left
     emit('newleave', username, room=room, include_self=False)
 
@@ -135,9 +147,9 @@ def on_leave(data):
 @socketio.on('start')
 def start(data):
     room = data['room']
-    with sql.connect("rooms.db") as con:
+    with connect() as con:
         cur = con.cursor()
-        cur.execute("SELECT topic, time FROM topics WHERE room = (?)", (room,))
+        cur.execute("SELECT Topic, TimeLimit FROM Rooms WHERE RoomID = %s", (room,))
         info = cur.fetchone()
     print("Sending start trigger with topic: " + str(info[0]) + " and time: " + str(info[1]) + " to room " + str(room))
     emit('startinfo', (info[0], info[1]), room=room)
@@ -146,9 +158,11 @@ def start(data):
 # registers submitted ideas to db
 @socketio.on('newidea')
 def newidea(data):
-    with sql.connect("rooms.db") as con:
+    with connect() as con:
         cur = con.cursor()
-        cur.execute("INSERT INTO ideas (idea, room, user) VALUES (?, ?, ?)", (data['idea'], data['room'], data['user']))
+        cur.execute("INSERT INTO Ideas (RoomID, Username, Idea) VALUES (%s, %s, %s)",
+                    (data['room'], data['user'], data['idea']))
+        con.commit()
 
 
 # Function to create a join code
@@ -158,9 +172,9 @@ def create_code():
     for i in range(0, 4):
         temp += str(randint(0, 9))
     # check if the code already exists
-    with sql.connect("rooms.db") as con:
+    with connect() as con:
         cur = con.cursor()
-        cur.execute("SELECT room FROM rooms WHERE room = (?)", (temp,))
+        cur.execute("SELECT RoomID FROM Rooms WHERE RoomID = %s", (temp,))
         temproom = cur.fetchone()
         # if the code already exists, try again
         if temproom:
@@ -173,4 +187,3 @@ def create_code():
 # always true, runs the application on localhost
 if __name__ == '__main__':
     socketio.run(app, debug=True)
-

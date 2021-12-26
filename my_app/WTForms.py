@@ -1,7 +1,15 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, SelectField
 from wtforms.validators import InputRequired, Length, ValidationError
-import sqlite3 as sql
+import mysql.connector
+from my_app import config
+
+
+# MySQL Connection helper function
+def connect():
+    return mysql.connector.connect(user=config.user, password=config.password,
+                                   host=config.host,
+                                   database=config.database)
 
 
 # makes the home join form with validators
@@ -15,18 +23,19 @@ class HomeJoinForm(FlaskForm):
 
     # custom validator for join_code
     def validate_join_code(self, join_code):
-        with sql.connect("rooms.db") as con:
+        with connect() as con:
             cur = con.cursor()
-            cur.execute("SELECT room FROM rooms WHERE room = (?)", (join_code.data,))
+            cur.execute("SELECT RoomID FROM Rooms WHERE RoomID = %s", (join_code.data,))
             roomobj = cur.fetchone()
             if not roomobj:
                 raise ValidationError("Incorrect room ID")
 
     # custom validator to prevent duplicate usernames
     def validate_username(self, field):
-        with sql.connect("rooms.db") as con:
+        with connect() as con:
             cur = con.cursor()
-            cur.execute("SELECT username FROM rooms WHERE username = (?) AND room = (?)", (field.data, self.join_code.data))
+            cur.execute("SELECT Username FROM Users WHERE Username = %s AND RoomID = %s",
+                        (field.data, self.join_code.data))
             roomobj = cur.fetchone()
             if roomobj:
                 raise ValidationError("Name already exists!")
