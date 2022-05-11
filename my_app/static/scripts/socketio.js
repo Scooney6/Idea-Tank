@@ -70,8 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("topic").innerHTML = topic;
         document.getElementById("idea_submition").style.visibility = "visible";
         startTimer(time);
-
     });
+    socket.on('IdeasSent', (ideas) => {
+        var docideas = [];
+        for (let i in ideas){
+            docideas.push(document.createElement("button"));
+            docideas[i].innerHTML = ideas[i];
+            document.body.appendChild(docideas[i]);
+        }
+    })
 });
 // Event handler for start button press
 document.getElementById("start").onclick = function () {
@@ -84,18 +91,22 @@ function getIdea() {
     socket.emit('newidea', {'user': username, 'room': room, 'idea': idea});
 }
 function startTimer(duration) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+    var dur = duration;
+    var timer = setInterval(function () {
+        let minutes = parseInt(dur / 60, 10);
+        let seconds = parseInt(dur % 60, 10);
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         document.getElementById("timer").textContent = minutes + ":" + seconds;
 
-        if (--timer < 0) {
+        if (--dur <= 0) {
+            clearInterval(timer);
             document.getElementById("idea_submition").style.visibility = "hidden";
+            if(username == Leader) {
+                socket.emit('votestart', {'room': room})
+            }
         }
     }, 1000);
 }
@@ -105,6 +116,9 @@ Leader presses go
 everyone gets the prompt displayed and a text box for idea submissions
 The timer gets displayed and counts down
 timer reaches zero, text box disappears.
-Ideas get split into pairs, and then pair by pair displayed on the page.
-Each has a button (left and right) and a timer counts down to show voting time
+
+Leader notifies server when timer is up
+Server sends all ideas back
+Clients cast vote
+winner is displayed
 */

@@ -165,6 +165,19 @@ def newidea(data):
         con.commit()
 
 
+@socketio.on('votestart')
+def votestart(data):
+    with connect() as con:
+        cur = con.cursor()
+        cur.execute("SELECT Idea FROM Ideas WHERE RoomID = %s", (data['room'],))
+        emit('IdeasSent', cur.fetchall(), room=data['room'])
+
+
+@socketio.on('vote')
+def vote(data):
+    pass
+
+
 # Function to create a join code
 def create_code():
     # create a code
