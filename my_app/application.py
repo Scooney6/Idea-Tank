@@ -133,6 +133,7 @@ def on_leave(data):
                 newlead = newlead[0]  # Converts tuple to string
                 print("Making " + newlead + " the new leader for room " + str(room))
                 cur.execute("UPDATE Users SET IsLeader = 1 WHERE Username = %s and RoomID = %s", (newlead, room))
+                con.commit()
                 # Notify everyone else in the room of the new leader
                 emit('newleader', newlead, room=room, include_self=False)
             else:
@@ -175,7 +176,20 @@ def votestart(data):
 
 @socketio.on('vote')
 def vote(data):
-    pass
+    with connect() as con:
+        cur = con.cursor()
+        vote = data['vote']
+        print("giving a vote to " + data['vote'] + " in room " + data['room'])
+        cur.execute("UPDATE Ideas SET Votes = (Votes + 1) WHERE Idea = %s and RoomID = %s", (vote, data['room']))
+        con.commit()
+
+
+@socketio.on('votingdone')
+def votingdone(data):
+    with connect() as con:
+        cur = con.cursor()
+        cur.execute("SELECT Idea FROM Ideas WHERE Votes = (SELECT MAX(Votes) FROM Ideas WHERE RoomID = %s) AND RoomID = %s", (data['room'], data['room']))
+        emit('result', cur.fetchall(), room=data['room'])
 
 
 # Function to create a join code

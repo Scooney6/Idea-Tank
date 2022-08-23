@@ -1,4 +1,4 @@
-// I am not familiar with js so uh...
+// First project with JS, learning as I go...
 var socket = io();
 var queryString = window.location.href;
 var url = new URL(queryString);
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Just before the page gets closed, notify server we left.
     window.onbeforeunload = function () {
-        if (username == Leader) {
-            socket.emit('leave', {'room': room, 'username': username, 'isleader': 1})
+        if (username === Leader) {
+            socket.emit('leave', {'room': room, 'username': username, 'isleader': 1});
         } else {
             socket.emit('leave', {'room': room, 'username': username, 'isleader': 0});
         }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let index = usernames.indexOf(data);
         if (index > -1) {
             usernames.splice(index, 1);
-            console.log("Removed player from list")
+            console.log("Removed player from list");
         }
         document.getElementById("users").innerHTML = usernames;
     });
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             usernames.push(users[i]);
         }
         Leader = leader;
-        if (username == Leader) {
+        if (username === Leader) {
             document.getElementById("start").style.visibility = "visible";
         }
         console.log(users);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('newleader', newleader => {
         Leader = newleader;
         console.log("New leader: " + newleader);
-        if (username == Leader) {
+        if (username === Leader) {
             document.getElementById("start").style.visibility = "visible";
         }
         document.getElementById("leader").innerHTML = Leader;
@@ -76,10 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i in ideas){
             docideas.push(document.createElement("button"));
             docideas[i].innerHTML = ideas[i];
-            document.body.appendChild(docideas[i]);
+            document.getElementById("ideas").appendChild(docideas[i]);
         }
-    })
+        document.getElementById("ideas").addEventListener("click", function(event) {
+            socket.emit('vote', {'room': room, 'vote': event.target.innerHTML});
+        });
+        startTimerVote(60);
+        document.getElementById("timer").style.visibility = "visible";
+    });
+    socket.on("result", result => {
+        console.log("recieved result: " + result);
+        document.getElementById("result").innerHTML = result;
+    });
 });
+
 // Event handler for start button press
 document.getElementById("start").onclick = function () {
     document.getElementById("start").style.visibility = "hidden";
@@ -104,8 +114,29 @@ function startTimer(duration) {
         if (--dur <= 0) {
             clearInterval(timer);
             document.getElementById("idea_submition").style.visibility = "hidden";
-            if(username == Leader) {
-                socket.emit('votestart', {'room': room})
+            if(username === Leader) {
+                socket.emit('votestart', {'room': room});
+            }
+        }
+    }, 1000);
+}
+function startTimerVote(duration) {
+    var dur = duration;
+    var timer = setInterval(function () {
+        let minutes = parseInt(dur / 60, 10);
+        let seconds = parseInt(dur % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        document.getElementById("timer").textContent = minutes + ":" + seconds;
+
+        if (--dur <= 0) {
+            clearInterval(timer);
+            document.getElementById("timer").style.visibility = "hidden";
+            document.getElementById("ideas").style.visibility = "hidden";
+            if(username === Leader) {
+                socket.emit('votingdone', {'room': room});
             }
         }
     }, 1000);
