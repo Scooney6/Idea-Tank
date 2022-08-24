@@ -6,14 +6,22 @@
   {% from 'field-macro.html' import displayField %}
 </head>
 <body>
-  <h1>Create Session</h1>
+  <h1 class="title">Create Session</h1>
   <!-- Create form -->
   <form action="{{url_for('create')}}" method="POST">
     {{ form.csrf_token }}
+    <div class="centerflex">
     {{ displayField(form.topic, 'Brainstorming Topic') }}
+    </div>
+    <div class="centerflex">
     {{ displayField(form.time_limit) }}
+    </div>
+    <div class="centerflex">
     {{ displayField(form.username, 'Your Username') }}
+    </div>
+    <div class="centerflex">
     {{ displayField(form.create_button) }}
+    </div>
   </form>
 </body>
 </html>

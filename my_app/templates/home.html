@@ -6,17 +6,27 @@
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
 </head>
 <body>
-  <h1>Idea Tank</h1>
+  <h1 class="title">Idea Tank</h1>
   <!-- Join Form -->
-  <form action="{{ url_for('home') }}" method="POST">
-    {{ form.csrf_token }}
-    {{ displayField(form.username, 'Username') }}
-    {{ displayField(form.join_code, 'Join Code') }}
-    {{ displayField(form.join_button) }}
-  </form>
-  <!-- Separate form for the create button -->
-  <form action="{{url_for('home')}}" method="POST">
-    <input type="submit" name="Create" value="Create">
-  </form>
+
+    <form action="{{ url_for('home') }}" method="POST">
+      {{ form.csrf_token }}
+      <div class="centerflex">
+        {{ displayField(form.join_code, 'Join Code') }}
+      </div>
+      <div class="centerflex">
+        {{ displayField(form.username, 'Username') }}
+      </div>
+      <div class="centerflex">
+        {{ displayField(form.join_button) }}
+      </div>
+    </form>
+    <!-- Separate form for the create button -->
+
+  <div class="centerflex">
+    <form action="{{url_for('home')}}" method="POST">
+      <input type="submit" name="Create" value="Start your own brainstorming session!">
+    </form>
+  </div>
 </body>
 </html>
