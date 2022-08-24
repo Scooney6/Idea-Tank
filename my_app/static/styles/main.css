@@ -2,11 +2,12 @@ html {
   min-height:100%
 }
 body {
-  background-color:#202020;
+  background-color: lightskyblue;
   background-image:linear-gradient(to bottom right, lightskyblue, mediumpurple);
 }
 .title {
-  margin-top: 15%;
+  margin-top: 2%;
+  margin-bottom: 20px;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   color: #202020DD;
@@ -15,6 +16,32 @@ body {
 .centerflex {
   display: flex;
   justify-content: center;
+}
+.code {
+  margin-top: -15px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202020DD;
+  font-size: 20px;
+}
+.names {
+  margin-top: -15px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202020DD;
+  font-size: 30px;
+}
+.result {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202020DD;
+  font-size: 50px;
+}
+.text {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202020DD;
+  font-size: 30px;
 }
 /* I hate css */
 /* TODO: make everything not look awful? */

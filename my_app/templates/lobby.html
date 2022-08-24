@@ -5,23 +5,25 @@
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
 </head>
 <body>
-  <h1>Lobby</h1>
-  <p>{{ code }}</p>
+  <h1 class="title">Lobby</h1>
+  <p class="code">{{ code }}</p>
   <div>
-    <p  id="leader">Loading...</p>
-    <p  id="users">Loading...</p>
-    <button id="start" style="visibility: hidden">Start</button>
+    <p id="leader" class="names">Loading...</p>
+    <p id="users" class="names">Loading...</p>
+    <div class="centerflex"><button id="start" class="centerflex" style="visibility: hidden">Start</button></div>
     <div id="idea_submition" style="visibility: hidden">
-      <p id="topic"></p>
+      <p id="topic" class="text"></p>
+      <div class="centerflex">
       <form onsubmit="getIdea();return false">
         <input id="ideabox" type="text">
-        <input id="submitidea" type="submit">
+        <input id="submitidea" type="submit" value="Submit Idea">
       </form>
-      <p id="timer"></p>
+        </div>
+      <p id="timer" class="text"></p>
     </div>
-    <div id="ideas"></div>
+    <div id="ideas" class="text"></div>
   </div>
-  <h1 id="result"></h1>
+  <h1 id="result" class="result"></h1>
   <!-- Socketio script-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
   <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
