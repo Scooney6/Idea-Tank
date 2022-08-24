@@ -6,6 +6,7 @@ var room = url.searchParams.get("code");
 var username = url.searchParams.get("username");
 var usernames = [];
 var Leader = ""
+var docideas = [];
 // Triggers when page loads
 document.addEventListener('DOMContentLoaded', () => {
     // Event bucket for when the client connects to the server
@@ -72,15 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         startTimer(time);
     });
     socket.on('IdeasSent', (ideas) => {
-        var docideas = [];
         for (let i in ideas){
             docideas.push(document.createElement("button"));
             docideas[i].innerHTML = ideas[i];
             document.getElementById("ideas").appendChild(docideas[i]);
         }
-        document.getElementById("ideas").addEventListener("click", function(event) {
-            socket.emit('vote', {'room': room, 'vote': event.target.innerHTML});
-        });
+        document.getElementById("ideas").addEventListener("click", vote);
         startTimerVote(60);
         document.getElementById("timer").style.visibility = "visible";
     });
@@ -95,6 +93,13 @@ document.getElementById("start").onclick = function () {
     document.getElementById("start").style.visibility = "hidden";
     socket.emit('start', {'room': room});
 };
+function vote(e) {
+    socket.emit('vote', {'room': room, 'vote': e.target.innerHTML});
+    document.getElementById("ideas").removeEventListener("click", vote)
+    for (let i in docideas){
+        docideas[i].disabled = true;
+    }
+}
 function getIdea() {
     let idea = document.getElementById("ideabox").value;
     document.getElementById("ideabox").value = "";

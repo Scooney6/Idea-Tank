@@ -40,8 +40,8 @@ def home():
             with connect() as con:
                 print("Inserting " + username + " in room " + str(code) + " and is not the leader")
                 cur = con.cursor()
-                cur.execute("INSERT INTO Users (RoomID, Username, IsLeader) VALUES (%s, %s, %s)",
-                            (code, username, False))
+                cur.execute("INSERT INTO Users (RoomID, Username, IsLeader, isOnline) VALUES (%s, %s, %s, %s)",
+                            (code, username, False, True))
                 con.commit()
             return redirect(url_for("lobby", code=code, username=username))
         # otherwise render the home page again with errors if necessary
@@ -118,15 +118,15 @@ def on_leave(data):
     isleader = data['isleader']
     # Make the user leave their socketio room
     leave_room(room)
-    # Remove them from the db
+    # Mark users as offline if they leave
     with connect() as con:
         cur = con.cursor()
-        cur.execute("DELETE FROM Users WHERE Username = %s and RoomID = %s", (username, room))
+        cur.execute("UPDATE Users SET isOnline = 0 WHERE Username = %s and RoomID = %s", (username, room))
         con.commit()
         print("Removed " + username + " from room " + str(room))
         # If they were the leader, and if there is someone else in the room, select a new one
         if isleader == 1:
-            cur.execute("SELECT Username FROM Users WHERE RoomID = %s ORDER BY rand() LIMIT 1",
+            cur.execute("SELECT Username FROM Users WHERE RoomID = %s AND isOnline = 1 ORDER BY rand() LIMIT 1",
                         (room,))  # Retreives tuple of string username
             newlead = cur.fetchone()
             if newlead is not None:
@@ -139,7 +139,9 @@ def on_leave(data):
             else:
                 # If the room is now empty, remove it
                 print("Room " + str(room) + " is now empty, deleting it")
-                cur.execute("DELETE FROM Rooms WHERE RoomID = %s", (room,))
+                cur.execute("DELETE FROM ideas WHERE RoomID = %s", (room,))
+                cur.execute("DELETE FROM users WHERE RoomID = %s", (room,))
+                cur.execute("DELETE FROM rooms WHERE RoomID = %s", (room,))
                 con.commit()
     # Notify everyone else in the room that user has left
     emit('newleave', username, room=room, include_self=False)
@@ -166,6 +168,7 @@ def newidea(data):
         con.commit()
 
 
+# sends ideas to users for voting
 @socketio.on('votestart')
 def votestart(data):
     with connect() as con:
@@ -174,6 +177,7 @@ def votestart(data):
         emit('IdeasSent', cur.fetchall(), room=data['room'])
 
 
+# Registers a submitted vote to the db
 @socketio.on('vote')
 def vote(data):
     with connect() as con:
@@ -184,6 +188,7 @@ def vote(data):
         con.commit()
 
 
+# Selects the idea with the most votes and sends to the users
 @socketio.on('votingdone')
 def votingdone(data):
     with connect() as con:
@@ -197,7 +202,7 @@ def create_code():
     # create a code
     temp = ""
     for i in range(0, 4):
-        temp += str(randint(0, 9))
+        temp += str(randint(1, 9))
     # check if the code already exists
     with connect() as con:
         cur = con.cursor()
@@ -214,3 +219,6 @@ def create_code():
 # always true, runs the application on localhost
 if __name__ == '__main__':
     socketio.run(app, debug=True)
+
+
+#TODO codes starting with 0 are still broken
